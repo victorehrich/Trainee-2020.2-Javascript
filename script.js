@@ -2,23 +2,31 @@
 var requestURL = "https://quiz-trainee.herokuapp.com/questions";
 var request = new XMLHttpRequest();
 request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
-var forme = request.response;
-var x=0;
+var formulario;
+var aux=-1;
+var NumeroDePerguntas;
 
+request.onreadystatechange = function(){
+  if(request.readyState === 4 ){
+    if(request.status === 200){
+      var formRadio = document.getElementsByName("resposta");
+      formulario = JSON.parse(request.responseText);
+      for(var i=0; i<formulario[0];i++){
+        document.getElementById("titulo")=formulario.title;
+        }
+      }
+    }
+  };
+
+
+request.send(null);
 function mostrarQuestao() {
+ aux=aux+1;
   document.getElementById("listaRespostas").style.display = "block";
   document.getElementById("confirmar").innerHTML = "Próxima";
-  x=x+1;
+  request.onreadystatechange;
+  console.log(formulario);
 
-  var resp = jsonObj['options'];
-
-  if(x==1){
-    document.getElementsByName("titulo")[0].textContent = 
-    document.getElementsByName("resposta")[0].span.textContent = resp[0]
-  }
-  
 
 
 }
