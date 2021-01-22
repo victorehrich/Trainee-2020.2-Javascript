@@ -1,11 +1,23 @@
-
-var requestURL = "https://quiz-trainee.herokuapp.com/questions";
-var request = new XMLHttpRequest();
-request.open('GET', requestURL);
-
+//variaveis
 var formulario;
 var aux=-1;
+var valor = 0;
 
+//URL da api com o  formato JSON
+var requestURL = "https://quiz-trainee.herokuapp.com/questions";
+
+//criacao do objeto XMLHttpRequest para n~ao precisar-mos atualizar a pagina quando quisermos recuperar dados entre o cliente e o servidor
+var request = new XMLHttpRequest();
+
+//Inicio do bloco//
+
+//Request para o servidor - open abrindo o request, send enviando
+request.open('GET', requestURL);
+
+//Funcao que eh chamada sempre que o readyState eh alterado
+//readyState - retorna o cabecalho da requisicao. cada valor indica um estado. 4 = operacao concluida.
+//status - eh o status de resposta da requisicao. 200 = solicitacao bem sucedida.
+//JSON.parse - funcao onde o conteudo do nosso JSON sera convertido em um objeto JavaScript.
 request.onreadystatechange = function(){
 
   if(request.readyState === 4){
@@ -14,15 +26,14 @@ request.onreadystatechange = function(){
     }
   }
 };
-var clicker = document.getElementById(("confirmar")); //tentar fazer um true false pra libearr o botao
 
-var valor = 0;
 request.send(null);
+//Final do Bloco
+
 
 function mostrarQuestao() {
   document.getElementById("resultado").innerHTML = "";
   document.getElementById("listaRespostas").style.display = "block";
-  //document.getElementById("confirmar").innerHTML = "Próxima";
 
 
       
